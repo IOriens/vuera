@@ -35,7 +35,7 @@ const makeReactContainer = Component => {
       const wrappedChildren = this.wrapVueChildren(children)
 
       return (
-        <Component {...rest}>
+        <Component {...rest} ref={ref => (this.reactComponentRef = ref)}>
           {children && <VueWrapper component={wrappedChildren} />}
         </Component>
       )

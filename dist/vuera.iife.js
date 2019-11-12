@@ -317,6 +317,8 @@ var makeReactContainer = function makeReactContainer(Component) {
     }, {
       key: 'render',
       value: function render() {
+        var _this2 = this;
+
         var _state = this.state,
             children = _state.children,
             _invoker = _state[''],
@@ -326,7 +328,9 @@ var makeReactContainer = function makeReactContainer(Component) {
 
         return React.createElement(
           Component,
-          rest,
+          _extends({}, rest, { ref: function ref(_ref) {
+              return _this2.reactComponentRef = _ref;
+            } }),
           children && React.createElement(VueContainer, { component: wrappedChildren })
         );
       }
@@ -343,13 +347,13 @@ var ReactWrapper = {
 
   methods: {
     mountReactComponent: function mountReactComponent(component) {
-      var _this2 = this;
+      var _this3 = this;
 
       var Component = makeReactContainer(component);
       var children = this.$slots.default !== undefined ? { children: this.$slots.default } : {};
       ReactDOM.render(React.createElement(Component, _extends({}, this.$props.passedProps, this.$attrs, this.$listeners, children, {
-        ref: function ref(_ref) {
-          return _this2.reactComponentRef = _ref;
+        ref: function ref(_ref2) {
+          return _this3.reactComponentRef = _ref2;
         }
       })), this.$refs.react);
     }
