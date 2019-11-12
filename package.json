@@ -1,5 +1,5 @@
 {
-  "name": "vuera",
+  "name": "@vdian/vuera",
   "description": "Use React in Vue and Vue in React",
   "version": "0.2.6",
   "repository": "akxcv/vuera",
